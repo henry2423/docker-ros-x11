@@ -94,7 +94,7 @@ RUN apt-get update && \
     tmux \
     git \
     wget \
-    lsb_release \
+    lsb-release \
     lsb-core
 
 # Install ROS
