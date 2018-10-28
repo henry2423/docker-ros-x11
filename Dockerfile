@@ -1,7 +1,7 @@
 # This Dockerfile is used to build an ROS + OpenGL + Gazebo + Tensorflow image based on Ubuntu 18.04
 FROM nvidia/opengl:1.0-glvnd-devel-ubuntu18.04
 
-LABEL maintainer "Henry Huang https://github.com/henry2423"
+LABEL maintainer "Henry Huang"
 MAINTAINER Henry Huang "https://github.com/henry2423"
 ENV REFRESHED_AT 2018-10-28
 

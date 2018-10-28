@@ -2,7 +2,7 @@
 This repository developed from nvidia/opengl and nvidia/cuda conatiners, combine these two together to create a ROS develope environment in docker
 
 ## Current Image Build:
-* `henry2423/ros-x11-ubuntu:melodic` : __Ubuntu 16.04 with `ROS Kinetic + Gazebo 8`__
+* `henry2423/ros-x11-ubuntu:melodic` : __Ubuntu 16.04 with `ROS melodic + Gazebo 9`__
 
   [![](https://images.microbadger.com/badges/version/henry2423/ros-x11-ubuntu:melodic.svg)](https://hub.docker.com/r/henry2423/ros-x11-ubuntu/) [![](https://images.microbadger.com/badges/image/henry2423/ros-x11-ubuntu:melodic.svg)](https://microbadger.com/images/henry2423/ros-x11-ubuntu:melodic)
 
