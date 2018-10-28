@@ -94,7 +94,8 @@ RUN apt-get update && \
     tmux \
     git \
     wget \
-    lsb-release
+    lsb_release \
+    lsb-core
 
 # Install ROS
 RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/ros-latest.list' && \
