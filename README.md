@@ -2,9 +2,13 @@
 This repository developed from nvidia/opengl and nvidia/cuda conatiners, combine these two together to create a ROS develope environment in docker
 
 ## Current Image Build:
-* `henry2423/ros-x11-ubuntu` : __Ubuntu 16.04 with `ROS Kinetic + Gazebo 8`__
+* `henry2423/ros-x11-ubuntu:melodic` : __Ubuntu 16.04 with `ROS Kinetic + Gazebo 8`__
 
-  [![](https://images.microbadger.com/badges/version/henry2423/ros-x11-ubuntu:latest.svg)](https://hub.docker.com/r/henry2423/ros-x11-ubuntu/) [![](https://images.microbadger.com/badges/image/henry2423/ros-x11-ubuntu:latest.svg)](https://microbadger.com/images/henry2423/ros-x11-ubuntu:latest)
+  [![](https://images.microbadger.com/badges/version/henry2423/ros-x11-ubuntu:melodic.svg)](https://hub.docker.com/r/henry2423/ros-x11-ubuntu/) [![](https://images.microbadger.com/badges/image/henry2423/ros-x11-ubuntu:melodic.svg)](https://microbadger.com/images/henry2423/ros-x11-ubuntu:melodic)
+
+* `henry2423/ros-x11-ubuntu:kinetic` : __Ubuntu 16.04 with `ROS Kinetic + Gazebo 8`__
+
+  [![](https://images.microbadger.com/badges/version/henry2423/ros-x11-ubuntu:kinetic.svg)](https://hub.docker.com/r/henry2423/ros-x11-ubuntu/) [![](https://images.microbadger.com/badges/image/henry2423/ros-x11-ubuntu:kinetic.svg)](https://microbadger.com/images/henry2423/ros-x11-ubuntu:kinetic)
 
 ## Requirement
 * Docker and Nvidia-docker(docker nvidia runtime) on the host: Check with [NVIDIA/nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
@@ -22,12 +26,12 @@ This repository developed from nvidia/opengl and nvidia/cuda conatiners, combine
         --env="DISPLAY" \
         --env="UID=`id -u $who`" \
         --env="UID=`id -g $who`" \
-        henry2423/ros-x11-ubuntu \
+        henry2423/ros-x11-ubuntu:kinetic \
         bash
 
 - If you want to connect to tensorboard, run command with mapping to local port `6006`:
       
-      docker run -it -p 5901:5901 -p 6901cu:6901 -p 6006:6006 henry2423/ros-x11-ubuntu
+      docker run -it -p 5901:5901 -p 6901cu:6901 -p 6006:6006 henry2423/ros-x11-ubuntu:kinetic
 
 - Build an image from scratch:
 
