@@ -93,7 +93,8 @@ RUN apt-get update && \
     apt-get install -y vim \
     tmux \
     git \
-    wget
+    wget \
+    lsb-release
 
 # Install ROS
 RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/ros-latest.list' && \
