@@ -1,4 +1,4 @@
-# This Dockerfile is used to build an ROS + OpenGL + Gazebo + Tensorflow image based on Ubuntu 16.04
+# This Dockerfile is used to build an ROS + OpenGL + Gazebo + Tensorflow image based on Ubuntu 18.04
 FROM nvidia/opengl:1.0-glvnd-devel-ubuntu18.04
 
 LABEL maintainer "Henry Huang https://github.com/henry2423"
@@ -29,6 +29,7 @@ ENV PATH /usr/local/cuda/bin:${PATH}
 # nvidia-container-runtime
 ENV NVIDIA_VISIBLE_DEVICES \
     ${NVIDIA_VISIBLE_DEVICES:-all}
+# set graphics for opengl capability
 ENV NVIDIA_DRIVER_CAPABILITIES compute,utility,graphics
 ENV NVIDIA_REQUIRE_CUDA "cuda>=10.0 brand=tesla,driver>=384,driver<385"
 
@@ -68,7 +69,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN apt-get update && \
     apt-get install -y sudo apt-utils curl
 
-#Add new sudo user
+# Environment config
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Add new sudo user
 ARG user=ros
 ARG passwd=ros
 ARG uid=1000
