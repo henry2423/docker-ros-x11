@@ -1,3 +1,4 @@
+#!/bin/bash
 XSOCK=/tmp/.X11-unix
 XAUTH=/tmp/.docker.xauth
 touch $XAUTH
@@ -8,5 +9,7 @@ nvidia-docker run -it \
         --volume=$XAUTH:$XAUTH:rw \
         --env="XAUTHORITY=${XAUTH}" \
         --env="DISPLAY" \
+        --env="UID=`id -u $who`" \
+        --env="UID=`id -g $who`" \
     henry2423/ros-x11 \
     bash
