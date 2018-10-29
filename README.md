@@ -17,7 +17,14 @@ This repository developed from nvidia/opengl and nvidia/cuda conatiners, combine
       $ apt-get install xauth xorg openbox
 
 ## Usage
-- Run command with the , to get into the container use interactive mode `-it` and `bash`
+- For the first time before runing up the docker, you should setup X11 socket and X11 auth files by runing command:
+
+      XSOCK=/tmp/.X11-unix
+      XAUTH=/tmp/.docker.xauth
+      touch $XAUTH
+      xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
+
+- Run command with x11 configuration, to set up the display environment:
 
       nvidia-docker run -it \
         --volume=/tmp/.X11-unix:/tmp/.X11-unix:rw \
@@ -25,13 +32,22 @@ This repository developed from nvidia/opengl and nvidia/cuda conatiners, combine
         --env="XAUTHORITY=/tmp/.docker.xauth" \
         --env="DISPLAY" \
         --env="UID=`id -u $who`" \
-        --env="UID=`id -g $who`" \
+        --env="GID=`id -g $who`" \
         henry2423/ros-x11-ubuntu:kinetic \
         bash
 
 - If you want to connect to tensorboard, run command with mapping to local port `6006`:
       
-      docker run -it -p 5901:5901 -p 6901cu:6901 -p 6006:6006 henry2423/ros-x11-ubuntu:kinetic
+      nvidia-docker run -it \
+        -p 6006:6006 \
+        --volume=/tmp/.X11-unix:/tmp/.X11-unix:rw \
+        --volume=/tmp/.docker.xauth:/tmp/.docker.xauth:rw \
+        --env="XAUTHORITY=/tmp/.docker.xauth" \
+        --env="DISPLAY" \
+        --env="UID=`id -u $who`" \
+        --env="GID=`id -g $who`" \
+        henry2423/ros-x11-ubuntu:kinetic \
+        bash
 
 - Build an image from scratch:
 
@@ -42,5 +58,3 @@ If the container runs up, you can connect to the container throught the followin
 * You can open the GUI program directly, such as rviz and gazebo 
 * Connect to __Tensorboard__ if you do the tensorboard mapping above: [`http://localhost:6006`](http://localhost:6006)
 * The default username and password in container is ros:ros
-
-## Detail Environment setting
