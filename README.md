@@ -27,12 +27,13 @@ This repository developed from nvidia/opengl and nvidia/cuda conatiners, combine
 - Run command with x11 configuration, to set up the display environment:
 
       nvidia-docker run -it \
-        --volume=/tmp/.X11-unix:/tmp/.X11-unix:rw \
-        --volume=/tmp/.docker.xauth:/tmp/.docker.xauth:rw \
-        --env="XAUTHORITY=/tmp/.docker.xauth" \
-        --env="DISPLAY" \
-        --env="UID=`id -u $who`" \
-        --env="GID=`id -g $who`" \
+        --volume /tmp/.X11-unix:/tmp/.X11-unix:rw \
+        --volume /tmp/.docker.xauth:/tmp/.docker.xauth:rw \
+        --env "XAUTHORITY=/tmp/.docker.xauth" \
+        --env "DISPLAY" \
+        --volume /etc/passwd:/etc/passwd \
+        --volume /etc/group:/etc/group \
+        --user $(id -u):$(id -g) \
         henry2423/ros-x11-ubuntu:kinetic \
         bash
 
@@ -40,12 +41,13 @@ This repository developed from nvidia/opengl and nvidia/cuda conatiners, combine
       
       nvidia-docker run -it \
         -p 6006:6006 \
-        --volume=/tmp/.X11-unix:/tmp/.X11-unix:rw \
-        --volume=/tmp/.docker.xauth:/tmp/.docker.xauth:rw \
-        --env="XAUTHORITY=/tmp/.docker.xauth" \
-        --env="DISPLAY" \
-        --env="UID=`id -u $who`" \
-        --env="GID=`id -g $who`" \
+        --volume /tmp/.X11-unix:/tmp/.X11-unix:rw \
+        --volume /tmp/.docker.xauth:/tmp/.docker.xauth:rw \
+        --env "XAUTHORITY=/tmp/.docker.xauth" \
+        --env "DISPLAY" \
+        --volume /etc/passwd:/etc/passwd \
+        --volume /etc/group:/etc/group \
+        --user $(id -u):$(id -g) \
         henry2423/ros-x11-ubuntu:kinetic \
         bash
 
@@ -57,4 +59,6 @@ This repository developed from nvidia/opengl and nvidia/cuda conatiners, combine
 If the container runs up, you can connect to the container throught the following
 * You can open the GUI program directly, such as rviz and gazebo 
 * Connect to __Tensorboard__ if you do the tensorboard mapping above: [`http://localhost:6006`](http://localhost:6006)
-* The default username and password in container is ros:ros
+* The username and password in container is same as your host account
+
+
