@@ -47,6 +47,7 @@ This repository developed from nvidia/opengl and nvidia/cuda conatiners, combine
         --env "DISPLAY" \
         --volume /etc/passwd:/etc/passwd \
         --volume /etc/group:/etc/group \
+        --volume /etc/shadow:/etc/shadow \
         --user $(id -u):$(id -g) \
         henry2423/ros-x11-ubuntu:kinetic \
         bash
