@@ -141,5 +141,8 @@ RUN pip install --ignore-installed --upgrade https://storage.googleapis.com/tens
 # Expose Tensorboard
 EXPOSE 6006
 
+# Expose Jupyter 
+EXPOSE 8888
+
 ### Switch to root user to install additional software
 USER $USER
