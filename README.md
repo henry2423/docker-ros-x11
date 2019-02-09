@@ -56,10 +56,37 @@ This repository developed from nvidia/opengl and nvidia/cuda conatiners, combine
 
       docker build -t henry2423/ros-x11-ubuntu .
 
+## Detail Environment setting
+
+### 1) Connecting jupyter notebook within container
+- Run command with mapping to local port `8888` (jupyter protocol) and `8888` (host web access):
+
+      nvidia-docker run -it \
+        -p 8888:8888 \
+        --volume /tmp/.X11-unix:/tmp/.X11-unix:rw \
+        --volume /tmp/.docker.xauth:/tmp/.docker.xauth:rw \
+        --env "XAUTHORITY=/tmp/.docker.xauth" \
+        --env "DISPLAY" \
+        --volume /etc/passwd:/etc/passwd \
+        --volume /etc/group:/etc/group \
+        --volume /etc/shadow:/etc/shadow \
+        --user $(id -u):$(id -g) \
+        henry2423/ros-x11-ubuntu:kinetic \
+        bash
+
+- Check your container assigned IP using `` $ifconfig`` within container, then you can start up jupyter notebook in container with following command: 
+
+      jupyter notebook --ip={YOUR CONTAINER IP} --port=8888 --allow-root
+
+- After start up the jupyter kernel, you can access the notebook from host browser through HTTP service.
+
+      http://localhost:8888/
+
 ## Connect & Control
 If the container runs up, you can connect to the container throught the following
 * You can open the GUI program directly, such as rviz and gazebo 
 * Connect to __Tensorboard__ if you do the tensorboard mapping above: [`http://localhost:6006`](http://localhost:6006)
+* Connect to __Jupyter__ if you do the tensorboard mapping above: [`http://localhost:8888/`](http://localhost:8888/)
 * The username and password in container is same as your host account
 
 
