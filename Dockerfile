@@ -1,9 +1,9 @@
 # This Dockerfile is used to build an ROS + OpenGL + Gazebo + Tensorflow image based on Ubuntu 18.04
-FROM nvidia/cudagl:9.2-devel-ubuntu18.04
+FROM nvidia/cudagl:10.0-devel-ubuntu18.04
 
 LABEL maintainer "Henry Huang"
 MAINTAINER Henry Huang "https://github.com/henry2423"
-ENV REFRESHED_AT 2019-02-09
+ENV REFRESHED_AT 2019-02-12
 
 # Install sudo
 RUN apt-get update && \
@@ -71,8 +71,8 @@ RUN apt-get install -y wget python-pip python-dev libgtk2.0-0 unzip libblas-dev 
 
 # prepare default python 2.7 environment
 USER root
-RUN pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.11.0-cp27-none-linux_x86_64.whl && \
-    pip install keras==2.2.4 matplotlib pandas scipy h5py testresources scikit-learn
+#pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.11.0-cp27-none-linux_x86_64.whl && \
+RUN  pip install tensorflow==1.13.0rc1 keras==2.2.4 matplotlib pandas scipy h5py testresources scikit-learn
 
 # Expose Jupyter 
 EXPOSE 8888
