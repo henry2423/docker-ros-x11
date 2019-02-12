@@ -72,7 +72,7 @@ RUN apt-get install -y wget python-pip python-dev libgtk2.0-0 unzip libblas-dev 
 # prepare default python 2.7 environment
 USER root
 #pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.11.0-cp27-none-linux_x86_64.whl && \
-RUN  pip install tensorflow==1.13.0rc1 keras==2.2.4 matplotlib pandas scipy h5py testresources scikit-learn
+RUN  pip install tensorflow-gpu==1.13.0rc1 keras==2.2.4 matplotlib pandas scipy h5py testresources scikit-learn
 
 # Expose Jupyter 
 EXPOSE 8888
